@@ -871,15 +871,6 @@ Chloro_asv_sample_surface_top <- Chloro_asv_sample_surface %>%
       arrange(desc(total))%>%
       dplyr::filter(total >= 200) 
 
-# Chloro_asv_sample_surface_top <- Chloro_asv_sample_surface %>% #WITH FILE CODE AS REQUESTED????
-  subset(depth_level == 'surface') %>%
-  drop_na(ecosystem) %>%
-  dplyr::select(file_code, asv_code, n_reads_pct) %>%
-  group_by(file_code, asv_code) %>%
-  dplyr::summarise(total = sum(n_reads_pct), .groups = 'drop') %>%
-  arrange(desc(total)) %>%
-  dplyr::filter(total >= 200)
-
 # Make Matrix for NMDS with top ASV's
 
    chloro_wide_top <- Chloro_asv_sample_surface %>%
