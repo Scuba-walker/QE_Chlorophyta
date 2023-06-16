@@ -99,6 +99,11 @@ names(WOA23_phosphate)[names(WOA23_phosphate) == "#COMMA SEPARATED LATITUDE"] <-
 names(WOA23_phosphate)[names(WOA23_phosphate) == "LONGITUDE"] <- "longitude"
 names(WOA23_phosphate)[names(WOA23_phosphate) == "AND VALUES AT DEPTHS (M):0"] <- "0"
 
+# Set zone
+
+asv_sample_raw$depth_level <- ifelse(asv_sample_raw$depth_level == "euphotic", "surface", asv_sample_raw$depth_level)
+MetaPR2_samples$depth_level <- ifelse(MetaPR2_samples$depth_level == "euphotic", "surface", MetaPR2_samples$depth_level)
+
 ```
 
 # MATCH SAMPLES
@@ -610,7 +615,7 @@ chloro_class_sub_eutrophic_treemap<- ggplot(chloro_class_sub_eutrophic, aes(area
                                              alpha = 0.5, colour = "black", 
                                              min.size = 0) +
       theme_bw() +
-  theme(axis.title.x = element_text(size = 15))  +
+      theme(axis.title.x = element_text(size = 15))  +
       scale_fill_manual(values=vir_class)+
       coord_cartesian(xlim = c(50, 350), ylim = c(10, 35), clip = "off")+
       guides(fill = "none") 
@@ -633,6 +638,7 @@ chloro_class_sub_oligotrophic_treemap<- ggplot(chloro_class_sub_oligotrophic, ae
       coord_cartesian(xlim = c(50, 350), ylim = c(10, 35), clip = "off")+
       guides(fill = "none") 
     
+chloro_class_sub_oligotrophic_treemap
 
 # Save
 
@@ -854,6 +860,7 @@ ggsave(filename = paste0("/Users/matt/Desktop/Work/PhD/Research/Bioinformatics/D
        height = 16,
        units = "cm",
        bg = "white")
+
 
 
 ```
